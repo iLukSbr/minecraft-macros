@@ -1,0 +1,29 @@
+$${
+if(a);
+    unset(a);
+    log("&e&l[&2&lMA&f&lC&4&lRO&e&l] &l&fMacro de reparar simples: &4&lOFF&f&l!!");
+    stop;
+else;
+    set(a);
+    log("&e&l[&2&lMA&f&lC&4&lRO&e&l] &l&fMacro de reparar simples: &2&lON&f&l!!");
+    #ferramenta = 278;
+    #comida = ;
+endif;
+do;
+    if((%ITEM% == %#ferramenta%)&&(%DURABILITY% < 100));
+        wait(100ms);
+        do;
+            pick(%#ferramenta%);
+            wait(100ms);
+            echo(/reparar);
+            wait(1);
+            log("&e&l[&2&lMA&f&lC&4&lRO&e&l] &l&fReparando!! &0(&8durabilidade: &f%DURABILITY%&0)");
+            if((%ITEM% == 278)&&(%DURABILITY% < 25));
+                log("&e&l[&2&lMA&f&lC&4&lRO&e&l] &4&lDURABILIDADE CRÍTICA!");
+                echo(/spawn);
+                break;
+            endif;
+        while(%DURABILITY% < 100);
+    endif;
+loop;
+}$$

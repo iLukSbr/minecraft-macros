@@ -1,0 +1,31 @@
+$${
+&li1 = " ";
+&li2 = " ";
+&li3 = " ";
+&li4 = " ";
+set(@placacolorida);
+&linha1 = $$[linha1];
+&linha2 = $$[linha2];
+&linha3 = $$[linha3];
+&linha4 = $$[linha4];
+if(%&linha1% != 0);
+&li1 = "&1&l%&linha1%";
+endif;
+if(%&linha2% != 0);
+&li2 = "&1&l%&linha2%";
+endif;
+if(%&linha3% != 0);
+&li3 = "&1&l%&linha3%";
+endif;
+if(%&linha4% != 0);
+&li4 = "&1&l%&linha4%";
+endif;
+keydown(sneak);
+wait(100ms);
+PLACESIGN("%&li1%","%&li2%","%&li3%","%&li4%","true");
+keyup(sneak);
+wait(900ms);
+press(ESCAPE);
+unset(@placacolorida);
+stop;
+}$$

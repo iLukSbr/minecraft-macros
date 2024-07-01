@@ -1,0 +1,26 @@
+$${
+if(@bateplaca);
+    log(BatePlaca parou);
+    unset(@bateplaca);
+    stop;
+else;
+    set(@bateplaca);
+    #home_delay = 2;
+    log(BatePlaca iniciou);
+    echo(/menuloja on);
+    echo(/esconder);
+    #i=1;
+    do(50);
+        echo(/home %#i%);
+        wait(%#home_delay%);
+        key(use);
+        inc(#i,1);
+        gui();
+    loop;
+    echo(/spawn);
+    echo(/mostrar);
+    log(BatePlaca terminou);
+    unset(@bateplaca);
+    stop;
+endif;
+}$$

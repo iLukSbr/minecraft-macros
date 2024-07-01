@@ -1,0 +1,33 @@
+$${
+if(@bateplaca);
+    log(BatePlaca parou);
+    unset(@bateplaca);
+    stop;
+else;
+    set(@bateplaca);
+    log(BatePlaca iniciou);
+    #i=1;
+    do(3);
+        echo(/home ter%#i%);
+        wait(1);
+        key(attack);
+        inc(#i,1);
+        wait(1);
+    loop;
+    #i=1;
+    do(1);
+        echo(/home bau%#i%);
+        wait(2);
+        do;
+            key(use);
+            wait(1);
+        while(%GUI% != "GUICHEST");
+        gui;
+        inc(#i,1);
+    loop;
+    echo(/home mobgolem);
+    log(BatePlaca terminou);
+    unset(@bateplaca);
+    stop;
+endif;
+}$$

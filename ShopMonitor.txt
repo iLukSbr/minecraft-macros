@@ -1,0 +1,24 @@
+$${
+IFMATCHES(%CHATCLEAN%,"(^\>(.+) (vendeu|comprou) (.+) por (.+) Coins em seu shop.$)",&sloja,1);
+    LOGTO("lojas.txt","%&sloja%");
+ENDIF;
+IFMATCHES(%CHATCLEAN%,"(^\[Loja Oficial] Você (vendeu|comprou) (.+) x (.+) por (.+) Coins.$)",&oficial,1);
+    LOGTO("lojas.txt","%&oficial%");
+ENDIF;
+IF(&sloja==NULL);
+
+ELSE;
+    @&lloja[] = %&sloja%;
+    foreach(@&lloja[],&item,#posicao);
+    next;
+ENDIF;
+IF(&oficial==NULL);
+
+ELSE;
+    @&oloja[] = %&oficial%;
+    foreach(@&oloja[],&item2,#posicao2);
+    next;
+ENDIF;
+UNSET(&sloja);
+UNSET(&oficial);
+}$$

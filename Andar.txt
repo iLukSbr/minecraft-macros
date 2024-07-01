@@ -1,0 +1,21 @@
+$${
+if(@andar);
+    unset(@andar);
+    unsprint;
+    keyup(forward);
+    log(Andar parou);
+else;
+    log(Andar iniciou);
+    set(@andar);
+    do;
+        keydown(forward);
+        sprint;
+        wait(500ms);
+        if(%HUNGER% < 8);
+            do;
+                key(use);
+            while(%HUNGER% < 8);
+        endif;           
+    loop;
+endif;
+}$$

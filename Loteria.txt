@@ -1,0 +1,29 @@
+$${TOGGLE(sleep_macro);
+IF(sleep_macro);
+LOG("&e<%PLAYER%> &bLigando Macro Loteria");
+WAIT(16T);
+PROMPT(#loteria_start,"$$[ [1,100,200,300,400,500,600,700,800,900]]","Começar por qual número?");
+IF((%#loteria_start%<1)||(%#loteria_start%>1000));
+LOG("&6&l[&f&oM&facro&6&l] &cVocê deve escolher um número de &f1 &caté &f1000&c. &9&o#SLEEP");
+LOG("&6&l[&f&oM&facro&6&l] &cLoteria &f&l[&4OFF&f&l]");
+TOGGLE(sleep_macro);
+STOP;
+
+ELSE;
+DEC(#loteria_start,1);
+ENDIF;
+DO;
+INC(#loteria_start,1);
+ACHIEVEMENTGET("Loteria: %#loteria_start% #zChloeChan",339);
+ECHO("/loteria %#loteria_start%");
+WAIT(20T);
+UNTIL(%#loteria_start%=1000);
+LOG("&6&l[&f&oM&facro&6&l] &cLoteria &f&l[&4OFF&f&l]");;
+TOGGLE(sleep_macro);
+STOP;
+ELSE;
+LOG("&6&l[&f&oM&facro&6&l] &cLoteria &f&l[&4OFF&f&l]");
+STOP;
+ENDIF;
+
+}$$

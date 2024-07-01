@@ -1,0 +1,14 @@
+$${
+if(autousing);
+log("&d[AutoClick] &fAutoClick Parou.");
+unset(autousing);
+stop();
+else;
+log("&d[AutoClick] &fAutoClick Começou.");
+set(autousing);
+do;
+key(attack);
+wait(1ms);
+loop;
+endif;
+}$$

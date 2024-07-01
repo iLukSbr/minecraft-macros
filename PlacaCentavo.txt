@@ -1,0 +1,23 @@
+$${
+#qtde = 0;
+#venda = 0;
+&compre = 0;
+&item = 0;
+if(%#qtde% == 0);
+    #qtde = $$[Quantidade];
+    #venda = $$[Venda];
+    &compre = $$[CompraJaMultiplicado];
+    &item = $$[ID];
+endif;
+#vlvenda = (%#qtde% * %#venda%);
+&vlcompra = %&compre%;
+if(%#vlvenda% > 0);
+    &vlcompravenda = "%#vlvenda%:%&vlcompra%";
+else
+    &vlcompravenda = ":%&vlcompra%";
+endif;
+keydown(sneak);
+wait(100ms);
+PLACESIGN("%PLAYER%","%#qtde%", "%&vlcompravenda%", "%&item%", "true");
+keyup(sneak);
+}$$

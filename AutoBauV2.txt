@@ -1,0 +1,44 @@
+$${
+	if(@autobau);
+		achievementget(AutoBau encerrado,54);
+		unset(@autobau);
+		stop;
+	else;
+		achievementget(AutoBau iniciado,54);
+		set(@autobau);
+		echo(/bench);
+		do(15);
+			wait(1);
+			do(2)
+				getslot(17,#slot,9);
+				slotclick(%#slot%,l,false);
+				wait(100ms);
+				slotclick(1,l,false);
+				wait(100ms);
+				slotclick(0,l,true);
+				wait(250ms);
+			loop;
+			for(#i,1,4);
+				getslot(5,#slot,9);
+				slotclick(%#slot%,l,false);
+				wait(100ms);
+				slotclick(%#i%,l,false);
+				wait(100ms);
+			next;
+			for(#i,6,9);
+				getslot(5,#slot,9);
+				slotclick(%#slot%,l,false);
+				wait(100ms);
+				slotclick(%#i%,l,false);
+				wait(100ms);
+			next;
+			wait(150ms);
+			slotclick(0,l,true);
+		loop;
+		wait(1);
+		gui();
+		achievementget(AutoBau concluido,54);
+		unset(@autobau);
+		stop;
+	endif;
+}$$

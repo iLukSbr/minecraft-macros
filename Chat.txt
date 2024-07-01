@@ -1,0 +1,18 @@
+$${
+if(@chat);
+    log(off);
+    unset(@chat);
+    stop;
+else;
+    set(@chat);
+    log(on);
+    do;
+        #item = %HITID%;
+        if(%#item% == 79);
+            do(3);
+                key(attack);
+            loop;
+        endif;
+    loop;
+endif;
+}$$

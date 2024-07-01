@@ -1,0 +1,45 @@
+$${
+if(@leilao);
+    unset(@leilao);
+    stop;
+else;
+    set(@leilao);
+    do;
+        ifmatches(%CHATCLEAN%,"s(es) VIP");
+            echo(/leilao);
+            wait(900ms);
+            do;
+                ifmatches(%CHATCLEAN%,"O lance subiu para");
+                    echo(/leilao);
+                    wait(900ms);
+                endif;
+                ifmatches(%CHATCLEAN%,"s(es) VIP");
+                    echo(/leilao);
+                    wait(900ms);
+                endif;
+                ifmatches(%CHATCLEAN%,"Fim de Leilao");
+                    exit;
+                endif;
+            loop;
+        endif;
+        ifmatches(%CHATCLEAN%,"Gema(s)");
+            echo(/leilao);
+            wait(900ms);
+            do;
+                ifmatches(%CHATCLEAN%,"O lance subiu para");
+                    echo(/leilao);
+                    wait(900ms);
+                endif;
+                ifmatches(%CHATCLEAN%,"Gema (s)");
+                    echo(/leilao);
+                    wait(900ms);
+                endif;
+                ifmatches(%CHATCLEAN%,"Fim de Leilao");
+                    exit;
+                endif;
+            loop;
+        endif;
+        
+    loop;
+endif;
+}$$

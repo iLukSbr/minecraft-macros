@@ -1,0 +1,70 @@
+$${
+achievementget("§6[MP]§f Vamos craftar",322:1);
+prompt(#item,$$i,"§6[MP]§f Bem vindo, qual item vamos craftar?");
+
+&imp="^1$|^2$|^3$|^4$|^6$|^6:1$|^6:2$|^6:3$|^7$|^8$|^9$|^10$|^11$|^12$|^13$|^14$|^15$|^16$|^17$|^17:1$|^17:2$|^17:3$|^18$|^18:1$|^18:2$|^18:3$|^19$|^20$|^21$|^26$|^30$|^31$|^31:1$|^31:2$|^32$|^34$|^36$|^37$|^38$|^39$|^40$|^48$|^49$|^51$|^52$|^55$|^56$|^59$|^60$|^62$|^63$|^64$|^68$|^71$|^73$|^74$|^75$|^78$|^79$|^80$|^81$|^82$|^83$|^86$|^87$|^88$|^92$|^93$|^94$|^95$|^99$|^100$|^103$|^104$|^105$|^106$|^110$|^111$|^115$|^117$|^118$|^119$|^120$|^121$|^127$|^129$|^132$|^287$|^288$|^289$|^295$|^296$|^322$|^334$|^335$|^336$|^341$|^344$|^348$|^349$|^350$|^351$|^351:2$|^351:3$|^352$|^367$|^368$|^369$|^370$|^372$|^373$|^375$|^384$|^383$|^159$|^160$|^161$|^162$|^163$|^164$|^165$|^166$|^167$|^168$|^169$|^170$|^171$|^172$|^173$|^174$|^175$|^176$|^177$|^178$|^179$|^180$|^181$|^182$|^183$|^184$|^185$|^186$|^187$|^188$|^189$|^190$|^191$|^192$|^193$|^194$|^195$|^196$|^197$|^198$|^199$|^200$|^201$|^202$|^203$|^204$|^205$|^206$|^207$|^208$|^209$|^210$|^211$|^212$|^213$|^214$|^215$|^216$|^217$|^218$|^219$|^220$|^221$|^223$|^224$|^225$|^226$|^227$|^228$|^229$|^230$|^231$|^232$|^233$|^234$|^235$|^236$|^237$|^238$|^239$|^240$|^241$|^242$|^243$|^245$|^246$|^247$|^248$|^249$|^250$|^251$|^252$|^253$|^254$|^255$";break;
+
+if(%#item%>408);
+achievementget("§6[MP]§f Impossivel craftar",322:1);
+log("&6[MP]&f A macro foi desligada, porque o item escolhido não existe ou não tem uma forma de craftar.");
+stop();
+endif;
+
+ifmatches(%#item%,%&imp%);
+achievementget("§6[MP]§f Impossivel craftar",322:1);
+log("&6[MP]&f A macro foi desligada, porque o item escolhido não existe ou não tem uma forma de craftar.");
+stop();
+endif;
+
+if(%#item%=nothing);
+achievementget("§6[MP]§f Escolha um item",322:1);
+stop();
+endif;
+
+
+log("&6[MP]&f Para te ajudar:&7 Ultilize por exemplo= &8998&76 para fazer 6 packs do item. O maximo de packs é 15.");
+log( &8Macro by: Plakeam);//=Por favor não remover=\\
+log("");
+prompt(#cl,$$?,"§6[MP]§f Quantos serão os itens?§7 Lembre-se que o maximo de itens é 999");
+&quant=%#cl%;
+&cl=%#cl%
+
+@#item=%#item%
+&clun="^9981$|^9982$|^9983$|^9984$|^9985$|^9986$|^9987$|^9988$|^9989$";break;
+&clde="^99810$|^99811$|^99812$|^99813$|^99814$|^99815$";break;
+ifmatches(%#cl%,%&clun%);
+#fg=%#cl%-9980;
+#bd=%#fg%*64;
+&quant=%#bd%;
+endif;
+ifmatches(%#cl%,%&clde%);
+#fg=%#cl%-99800;
+#bd=%#fg%*64;
+&quant=%#bd%;
+endif;
+
+if(%&quant%=nothing);
+achievementget("§6[MP]§f Craftando 1",%#item%);
+echo(/bench);
+wait(900ms);
+craft(%#item%,1,false);
+endif;
+
+if(%#cl%>999);
+ifmatches(%#cl%,%&clde%);
+else;
+ifmatches(%#cl%,%&clun%);
+else;
+log("&6[MP]&7 Macro alterado automaticamente para 999 itens a serem craftados.");
+&quant=999;
+endif;
+endif;
+endif;
+
+if(%&quant%>1);
+achievementget("§6[MP]§f Craftando %&quant%",%#item%);
+echo(/bench);
+wait(900ms);
+craft(%#item%,%&quant%,false);
+endif;
+}$$

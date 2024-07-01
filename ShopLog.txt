@@ -1,0 +1,32 @@
+$${
+IF(KEY_DELETE);
+    UNSET(@&lloja[]);
+    UNSET(@&oloja[]);
+    LOG("&4&l[&3&lMACRO&4&l] &c&lMovimentaçoes das lojas &3&lAPAGADAS&c&l!");
+ENDIF;
+arraysize(@&lloja[],#tamanho);
+UNSAFE(0);
+    IF(#tamanho == 0);
+        LOG("&4&l[&3&lMACRO&4&l] &c&lVocê nao comprou/vendeu nada na sua &3&lLOJA&c&l!");
+    ELSE
+        LOG("&4&l[&3&lMACRO&4&l] &c&lMovimentaçoes pela sua &3&lLOJA:");
+        LOG("");
+        foreach(@&lloja[],&item,#posicao);
+            LOG("&4&l[&3%#posicao%&4&l] &2%&item%");
+        next;
+    ENDIF;
+ENDUNSAFE;
+arraysize(@&oloja[],#tamanho2);
+UNSAFE(0);
+    IF(#tamanho2 == 0);
+        LOG("&4&l[&3&lMACRO&4&l] &c&lVocê nao comprou/vendeu nada pela &3&lLOJA OFICIAL&c&l!");
+    ELSE
+        LOG("");
+        LOG("&4&l[&3&lMACRO&4&l] &c&lMovimentaçoes pela loja &3&lOFICIAL:");
+        LOG("");
+        foreach(@&oloja[],&item2,#posicao2);
+            LOG("&4&l[&3%#posicao2%&4&l] &2%&item2%");
+        next;
+    ENDIF;
+ENDUNSAFE;
+}$$

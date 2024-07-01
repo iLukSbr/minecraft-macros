@@ -1,0 +1,8 @@
+$${
+#looky=%YAW%-180;#lookp=%PITCH%;
+if(%#lookp%>90);#lookp=%#lookp%-360;else;#lookp=%PITCH%;endif;
+log("");
+log("&b» &6Olá &a%PLAYER%&6, o seu &aLook &6Original é: &cLOOK (%YAW%,%PITCH%)");
+log("&b» &6Porém, O &aLook &6no Macro ficará: &2LOOK (%#looky%,%#lookp%"));
+log("");
+}$$

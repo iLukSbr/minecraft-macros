@@ -1,0 +1,30 @@
+$${
+if(@automoney);
+    log( );
+    log(&a&l[Macro]&9 &l&k! &9AUTOMONEY &l&k! &e%#total% &fcoins transferidos &4&l[OFF]);
+    unset(@automoney);
+    stop();
+else;
+    log( );
+    log(&a&l[Macro]&9 &l&k! &9AUTOMONEY &l&k! &2&l[ON]);
+    #total = 0;
+    set(@automoney);
+    do;
+        set(@monitoramoney);
+        echo(/money);
+        wait(4);
+        if(@#dinheiro);
+            log(&a&l[Macro] &fEncontrados &3&l%@#dinheiro% &fcoins.);
+            do(2);
+                wait(3);
+                echo(/money pay lucalan %@#dinheiro%);
+            loop;
+            inc(#total,%@#dinheiro%);
+            unset(@#dinheiro);
+        else;
+            log(&a&l[Macro] &fCoins &cinsuficientes&f.)
+        endif;
+        wait(60);
+    loop;
+endif;
+}$$
