@@ -23,7 +23,7 @@ else;
 	#filabau = 0;
 	#erro = 0;
 	#armazenou = 0;
-	#home_delay = 2;
+	#home_delay = 10;
 	do;
 		dec(#auxfila,5);
 		inc(#filabau,1);
