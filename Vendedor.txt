@@ -2,36 +2,40 @@ $${
 if(@vendedor);
     log( );
     log(&a&l[iLukS]&9 &l&k! &9VENDEDOR &l&k! &fparou no armazem &e%#narmazem% &fe bau &e%#nbau% &4&l[OFF]);
-    echo(/spawn);
     unset(@vendedor);
+	unset(@afk_onchat);
     stop();
 else;
     set(@vendedor);
+	set(@afk_onchat);
     log( );
     log(&a&l[iLukS]&9 &l&k! &9VENDEDOR &l&k! &3&l[ON]);
-    #home_delay = 10;
+    prompt(#homedelay,$$?,Quanto delay de home?);
+
     prompt(#nitens,$$?,Quantos itens diferentes deseja vender?);
-    // N° DO ARMAZÉM //
-    prompt(&tipo,$$?,Visitar o "mkb" ou "armazem"?);
-    if(%&tipo% != "mkb");
-        prompt(#narmazem,$$?,Qual sera o primeiro armazem a vasculhar?);
-    endif;
+	
     // ITENS A VENDER //
     #nloop = 1;
-    do;
+    do(%#nloop%);
         prompt(#item[%#nloop%],$$i,Qual o id do item %#nloop% a vender?);
         prompt(&nome[%#nloop%],$$?,Qual o nome da home do item %#nloop% a vender?);
         inc(#nloop,1);
     while(%#nloop% <= %#nitens%);
-    // BAÚ INICIAL DO ARMAZÉM - DIREÇÃO NORTE //
-    prompt(#nbau,$$?,Qual o primeiro bau do armazem?);
-    prompt(#nbaumax,$$?,Ate qual bau do armazem devo vender?);
+	
+    // N° DO ARMAZÉM //
+    prompt(&tipo,$$?,Visitar o "mkb" ou "armazem"?);
     if(%&tipo% != "mkb");
-        prompt(#narmazemfinal,$$?,Qual o ultimo armazem que devo vender?);
+        prompt(#narmazem,$$?,Qual o primeiro armazem para vender?);
+        prompt(#narmazemfinal,$$?,Qual o ultimo armazem para vender?);
     else;
         #narmazem = 1;
         #narmazemfinal = %#narmazem%;
     endif;
+	
+    // BAÚ INICIAL DO ARMAZÉM - DIREÇÃO NORTE //
+    prompt(#nbau,$$?,Qual o primeiro bau do armazem para vender?);
+    prompt(#nbaumax,$$?,Qual o ultimo bau do armazem para vender?);
+	
     #nbauoriginal = %#nbau%;
     #auxfila = %#nbau%;
     #filabau = 0;
@@ -50,7 +54,7 @@ else;
         else;
             echo(/home armazem%#narmazem%);
         endif;
-        wait(%#home_delay%);
+        wait(%#homedelay%);
 		unsprint;
         keydown(jump);
         wait(500ms);
@@ -93,7 +97,7 @@ else;
                 if((%#erroloop% > 0) || (%#poszarmazematual% != %#poszarmazem%));
 					log(&a&l[iLukS]&9 &l&k! &9VENDEDOR &l&k! &cErro detectado);
 					echo(/spawn);
-					wait(%#home_delay%);
+					wait(%#homedelay%);
                     #erroloop = 0;
                     break;
                 endif;
@@ -133,7 +137,7 @@ else;
             if(%GUI% != "GUICHEST");
 				log(&a&l[iLukS]&9 &l&k! &9VENDEDOR &l&k! &cErro detectado);
 				// echo(/spawn);
-				// wait(%#home_delay%);
+				// wait(%#homedelay%);
                 break;
             endif;
             #possuiitens = 0;
@@ -206,7 +210,7 @@ else;
         do;
             log(&a&l[iLukS]&9 &5Inventario com produtos. &l&k! &9VENDEDOR &l&k! &fpassando item &e%#item[%#nloop%]%);
             echo(/home %&nome[%#nloop%]%);
-            wait(%#home_delay%);
+            wait(%#homedelay%);
             echo(/menuloja off);
             echo(/esconder);
 			#looky=%YAW%-180;
