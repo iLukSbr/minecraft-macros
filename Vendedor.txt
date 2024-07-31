@@ -210,7 +210,7 @@ else;
         while(%#slotvazio% > 0);
         #nloop = 1;
         do;
-            log(&a&l[iLukS]&9 &5Inventario com produtos. &l&k! &9VENDEDOR &l&k! &fpassando item &e%#item[%#nloop%]%);
+            log(&a&l[iLukS]&9 &5Inventario com produtos. &l&k! &9VENDEDOR &l&k! &fpassando item &e%#item[%#nloop%]% do armazem%#narmazem% bau%#nbau%);
             echo(/home %&nome[%#nloop%]%);
             wait(%#homedelay%);
             echo(/menuloja off);
